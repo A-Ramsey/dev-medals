@@ -1,8 +1,13 @@
+@php
+    /* vim: set filetype=blade.php : */
+@endphp
 @extends('layouts.base')
 
 @section('body')
-    @yield('content')
-    
+    <div class="h-screen">
+        @yield('content')
+    </div>
+
     @isset($slot)
         {{ $slot }}
     @endisset

@@ -9,6 +9,7 @@ use App\Livewire\Auth\Passwords\Reset;
 use App\Livewire\Auth\Register;
 use App\Livewire\Auth\Verify;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MedalController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,4 +54,12 @@ Route::middleware('auth')->group(function () {
 
     Route::post('logout', LogoutController::class)
         ->name('logout');
+});
+
+Route::middleware('auth')->group(function () {
+    Route::prefix('medals')->group(function () {
+        Route::get('/', [MedalController::class, 'index'])->name('medals.home');
+        Route::post('/', [MedalController::class, 'save'])->name('medals.save');
+        Route::get('{medal}', [MedalController::class, 'show'])->name('medals.show');
+    });
 });
